@@ -36,7 +36,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" routerLink="/login">Entrar</a>
-          <a class="dropdown-item" routerLink="/cadastro">Cadastrar</a>
+          <a class="dropdown-item" data-toggle="modal" data-target="#mymodal2">Cadastrar</a>
         </div>
       </li>
 
@@ -56,3 +56,73 @@
       <!-- <li class="nav-item">
         <small><a href="" (click)="sair()">Sair</a></small>
       </li> -->
+      <div class="modal fade" id="mymodal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered d-flex justify-content-center" role="document">
+        <div class="modal-content modal-personalizado backgroundModal cor-backgroundmodal">
+            <div class="container-fluid">
+                <div class="row ">
+                    <div style="border-radius: 20px;" class="col-md-6">
+
+                        <h3 class="text-center mt-5 fonte negrito">CADASTRAR</h3>
+                        <hr width="200px">
+
+                        <form class="fonte negrito">
+                            <div class="form-group" style="margin-top: 30px;">
+                                <label class="mb-0 ml-2" for="formGroupExampleInput">Usuário:</label>
+                                <input [(ngModel)]='usuario.usuario' type="text" class="form-control"
+                                    id="usuario" placeholder="Digite seu usuario" name="usuario">
+                            </div>                                                                                 
+
+                            <div class="form-group">
+                                <label class="mb-0 ml-2" for="formGroupExampleInput">E-mail:</label>
+                                <input [(ngModel)]='usuario.email' type="email" class="form-control" id="email"
+                                    placeholder="Digite seu e-mail" name="email">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="mb-0 ml-2" for="formGroupExampleInput2">Senha:</label>
+                                <input (input)='confirmSenha($event)' type="password" class="form-control" id="senha"
+                                    placeholder="" name="senha">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="mb-0 ml-2" for="formGroupExampleInput2">Confirmar Senha:</label>
+                                <input [(ngModel)]='usuario.senha' type="password" class="form-control"
+                                    id="confirmarSenha" placeholder="" name="confirmarSenha">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="tipo">Tipo de Usuário</label>
+                                <select class="form-control" name="tipo" id="tipo" (change)='tipoUsuario($event)'>        
+                                    
+                                    <option>Selecione um tipo de usuário:</option>
+                                    <option value="cliente">Cliente</option>
+                                    <option value="colaborador">Colaborador</option>
+                                </select>
+                            </div>
+
+
+                        </form>
+
+                        <div class="d-flex justify-content-center mt-2 mb-5 mt-4">
+                            <button id="button1" type="submit"
+                                class="btn btn-danger mr-3 mt-2 mb-2"
+                                data-dismiss="modal">Cancelar</button>
+                            <button id="button2" type="submit"
+                                class="btn btn-success mt-2 mb-2"
+                                (click)='cadastrar()' data-dismiss="modal">Cadastrar</button>
+                        </div>
+
+
+                    </div>
+                    <div style="border-radius: 20px;" class="col-md-6 mt-5">
+                        <img class="img-fluid" style="margin-top: 100px;" src="../../assets/logoecommecer.png" alt=""
+                            width="350px" height="350px">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- \Modal-Cadastrar -->

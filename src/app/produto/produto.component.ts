@@ -21,6 +21,10 @@ export class ProdutoComponent implements OnInit {
   idProduto:number
   listaCategoria: Categoria[];
 
+  listaCat: Categoria
+
+  cat:number
+
   constructor(private router: Router, 
     private produtoService: ProdutoService,
     private categoriaService: CategoriaService,
@@ -57,4 +61,13 @@ export class ProdutoComponent implements OnInit {
     this.carrinhoService.adicionar(this.produto)
     console.log(this.carrinhoService.produtos)
   }
+
+  getByIdCategoria(id:number){
+  this.categoriaService.getByIdCategoria(id).subscribe((resp: Categoria) =>{
+    this.listaCat = resp
+    this.getByIdCategoria
+
+  })
+}
+
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment.prod';
 import { Usuario } from '../model/Usuario';
 import { AuthService } from '../service/auth.service';
 
@@ -11,7 +12,10 @@ import { AuthService } from '../service/auth.service';
 export class CadastroClienteComponent implements OnInit {
 
   usuario: Usuario = new Usuario()
-  confirmarSenha: string
+  
+  
+  
+  confirmarSenha: string;
   tipoUser: string;
 
 
@@ -36,6 +40,7 @@ export class CadastroClienteComponent implements OnInit {
   }
   
   cadastrar(){
+    console.log(environment)
     this.usuario.tipo = this.tipoUser
 
     if(this.usuario.senha != this.confirmarSenha){

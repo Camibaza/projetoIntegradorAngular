@@ -19,6 +19,9 @@ export class MenuComponent implements OnInit {
   listaCategorias: Categoria[];
   listaProdutos: Produto[];
 
+  tipoUser: string;
+  confirmarSenha: string;
+
   constructor(
     public auth: AuthService,
     private prod: ProdutoService,
@@ -48,5 +51,28 @@ export class MenuComponent implements OnInit {
 
   sair() {
     localStorage.clear();
+  }
+  
+  tipoUsuario(event: any){
+    this.tipoUser = event.target.value
+  }
+
+  confirmSenha(event: any) {
+    this.confirmarSenha = event.target.value
+  }
+
+  cadastrar(){
+    console.log(environment)
+    this.usuario.tipo = this.tipoUser
+
+    if(this.usuario.senha != this.confirmarSenha){
+      alert('As senhas estão incorretas.')
+    } else {
+      this.auth.cadastrar(this.usuario).subscribe((resp: Usuario) => {
+        this.usuario = resp
+        this.router.navigate(['/login'])
+        alert('Usuario Cadastrado com sucesso!')
+      })
+    }
   }
 }
