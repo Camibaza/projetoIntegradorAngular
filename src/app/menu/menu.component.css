@@ -21,3 +21,34 @@
   .bg-color-art{
       color: #FDF5E9;
   }
+
+  .cor-backgroundmodal{
+    background-color: rgba(190, 189, 189, 0.3);
+    backdrop-filter: blur(8px);
+    border-radius: 60px;
+    padding: 0 50px;
+    
+  }
+
+  .form-group label {
+      font-size: 20px;
+      color: white;
+      
+  }
+
+
+  .tamanho-modal{
+      width: 0 800px;
+  }
+  .botao-color{
+    background-color: white;
+
+   }
+
+   .botao-color:hover{
+       color: #d4874f;
+   }
+
+    
+    
+      

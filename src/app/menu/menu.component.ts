@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment.prod';
 import { Categoria } from '../model/Categoria';
 import { Produto } from '../model/Produto';
 import { Usuario } from '../model/Usuario';
+import { UsuarioLogin } from '../model/UsuarioLogin';
 import { AuthService } from '../service/auth.service';
 import { CategoriaService } from '../service/categoria.service';
 import { ProdutoService } from '../service/produto.service';
@@ -15,6 +16,7 @@ import { ProdutoService } from '../service/produto.service';
 })
 export class MenuComponent implements OnInit {
   usuario: Usuario = new Usuario();
+  usuarioLogin: UsuarioLogin = new UsuarioLogin();
 
   listaCategorias: Categoria[];
   listaProdutos: Produto[];
@@ -70,9 +72,29 @@ export class MenuComponent implements OnInit {
     } else {
       this.auth.cadastrar(this.usuario).subscribe((resp: Usuario) => {
         this.usuario = resp
-        this.router.navigate(['/login'])
         alert('Usuario Cadastrado com sucesso!')
       })
     }
   }
+
+  login(){
+    console.log(this.login)
+    this.auth.entrar(this.usuarioLogin).subscribe((resp: UsuarioLogin)=> {
+      this.usuarioLogin = resp
+
+      environment.token = this.usuarioLogin.token
+      environment.nome = this.usuarioLogin.nome
+      environment.foto = this.usuarioLogin.foto
+      environment.id = this.usuarioLogin.id
+      environment.tipo = this.usuarioLogin.tipo
+
+
+      this.router.navigate(['/produto'])
+    }, erro =>{
+      if (erro.status == 500){
+        alert('Usuario ou senha estão incorretos!')
+      }
+    })
+  }
+
 }

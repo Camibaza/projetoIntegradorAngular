@@ -1,48 +1,37 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-color">
-  <a id="fonte" class="navbar-brand fonte-size-18 bg-color-art" href="#"> <img width="60px" height="60px" src="../../assets/logotipomini (2).png" alt=""> ArteManha</a>
-  <button
-    class="navbar-toggler"
-    type="button"
-    data-toggle="collapse"
-    data-target="#navbarSupportedContent"
-    aria-controls="navbarSupportedContent"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-  >
+  <a id="fonte" class="navbar-brand fonte-size-18 bg-color-art" href="#"> <img width="60px" height="60px"
+      src="../../assets/logotipomini (2).png" alt=""> ArteManha</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav ml-auto mr-4 ">
+    <ul class="navbar-nav ml-auto mr-4">
+     <li>
+      <a routerLink="/carrinho" class="text-white">Carrinho<i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+     </li> 
       <li class="nav-item">
-        <a routerLink="/produto"  class="nav-link text-white bg-color-art ">Produtos</a>
+        <a routerLink="/produto"  class="nav-link text-white bg-color-art">Produtos</a>
+        
       </li>
       <li class="nav-item">
         <a routerLink="/categoria" class="nav-link text-white" *ngIf='auth.colaborador()'>Categorias</a>
       </li>
       <li class="nav-item dropdown" *ngIf="!auth.logado()">
-        <a
-          class="nav-link dropdown-toggle text-white "
-          href="#"
-          id="navbarDropdown"
-          role="button"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-          *ngIf='!auth.logado()'
-        
-        >
+        <a class="nav-link dropdown-toggle text-white " href="#" id="navbarDropdown" role="button"
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" *ngIf='!auth.logado()'>
           Entrar
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" routerLink="/login">Entrar</a>
+          <a class="dropdown-item" data-toggle="modal" data-target="#mymodal1">Entrar</a>
           <a class="dropdown-item" data-toggle="modal" data-target="#mymodal2">Cadastrar</a>
         </div>
       </li>
 
       <li class="nav-item ">
-          <a href="" (click)="sair()" *ngIf='auth.logado()' class="nav-link text-white">Sair</a>
-        </li>
+        <a href="" (click)="sair()" *ngIf='auth.logado()' class="nav-link text-white">Sair</a>
+      </li>
 
       <!-- <li class="nav-item">
         <small><a href="" (click)="sair()">Sair</a></small>
@@ -56,73 +45,120 @@
       <!-- <li class="nav-item">
         <small><a href="" (click)="sair()">Sair</a></small>
       </li> -->
-      <div class="modal fade" id="mymodal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered d-flex justify-content-center" role="document">
-        <div class="modal-content modal-personalizado backgroundModal cor-backgroundmodal">
+      <div class="modal fade p-5" id="mymodal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered d-flex justify-content-center" role="document">
+          <div class="modal-content modal-personalizado backgroundModal cor-backgroundmodal">
+            <h3 class="text-center mt-5 fonte negrito text-white">CADASTRAR</h3>
+            <hr width="400px">
             <div class="container-fluid">
-                <div class="row ">
-                    <div style="border-radius: 20px;" class="col-md-6">
+              <div class="row d-flex justify-content-center align-items-center ">
+               
 
-                        <h3 class="text-center mt-5 fonte negrito">CADASTRAR</h3>
-                        <hr width="200px">
+                 
 
-                        <form class="fonte negrito">
-                            <div class="form-group" style="margin-top: 30px;">
-                                <label class="mb-0 ml-2" for="formGroupExampleInput">Usuário:</label>
-                                <input [(ngModel)]='usuario.usuario' type="text" class="form-control"
-                                    id="usuario" placeholder="Digite seu usuario" name="usuario">
-                            </div>                                                                                 
-
-                            <div class="form-group">
-                                <label class="mb-0 ml-2" for="formGroupExampleInput">E-mail:</label>
-                                <input [(ngModel)]='usuario.email' type="email" class="form-control" id="email"
-                                    placeholder="Digite seu e-mail" name="email">
-                            </div>
-
-                            <div class="form-group">
-                                <label class="mb-0 ml-2" for="formGroupExampleInput2">Senha:</label>
-                                <input (input)='confirmSenha($event)' type="password" class="form-control" id="senha"
-                                    placeholder="" name="senha">
-                            </div>
-
-                            <div class="form-group">
-                                <label class="mb-0 ml-2" for="formGroupExampleInput2">Confirmar Senha:</label>
-                                <input [(ngModel)]='usuario.senha' type="password" class="form-control"
-                                    id="confirmarSenha" placeholder="" name="confirmarSenha">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="tipo">Tipo de Usuário</label>
-                                <select class="form-control" name="tipo" id="tipo" (change)='tipoUsuario($event)'>        
-                                    
-                                    <option>Selecione um tipo de usuário:</option>
-                                    <option value="cliente">Cliente</option>
-                                    <option value="colaborador">Colaborador</option>
-                                </select>
-                            </div>
-
-
-                        </form>
-
-                        <div class="d-flex justify-content-center mt-2 mb-5 mt-4">
-                            <button id="button1" type="submit"
-                                class="btn btn-danger mr-3 mt-2 mb-2"
-                                data-dismiss="modal">Cancelar</button>
-                            <button id="button2" type="submit"
-                                class="btn btn-success mt-2 mb-2"
-                                (click)='cadastrar()' data-dismiss="modal">Cadastrar</button>
-                        </div>
-
-
+                  <form class="fonte negrito">
+                    <div class="form-group" style="margin-top: 30px;">
+                      <label class="mb-0 ml-2" for="formGroupExampleInput">Usuário:</label>
+                      <input [(ngModel)]='usuario.usuario' type="text" class="form-control" id="usuario"
+                        placeholder="Digite seu usuario" name="usuario">
                     </div>
-                    <div style="border-radius: 20px;" class="col-md-6 mt-5">
-                        <img class="img-fluid" style="margin-top: 100px;" src="../../assets/logoecommecer.png" alt=""
-                            width="350px" height="350px">
+
+                    <div class="form-group">
+                      <label class="mb-0 ml-2" for="formGroupExampleInput">E-mail:</label>
+                      <input [(ngModel)]='usuario.email' type="email" class="form-control" id="email"
+                        placeholder="Digite seu e-mail" name="email">
                     </div>
+
+                    <div class="form-group">
+                      <label class="mb-0 ml-2" for="formGroupExampleInput2">Senha:</label>
+                      <input (input)='confirmSenha($event)' type="password" class="form-control" id="senha"
+                        placeholder="" name="senha">
+                    </div>
+
+                    <div class="form-group">
+                      <label class="mb-0 ml-2" for="formGroupExampleInput2">Confirmar Senha:</label>
+                      <input [(ngModel)]='usuario.senha' type="password" class="form-control" id="confirmarSenha"
+                        placeholder="" name="confirmarSenha">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="tipo">Tipo de Usuário</label>
+                      <select class="form-control" name="tipo" id="tipo" (change)='tipoUsuario($event)'>
+
+                        <option>Selecione um tipo de usuário:</option>
+                        <option value="cliente">Cliente</option>
+                        <option value="colaborador">Colaborador</option>
+                      </select>
+                    </div>
+
+
+                  </form>
+
+                  <div class="d-flex justify-content-center mt-2 mb-5 mt-4">
+                    <button id="button1" type="submit" class="btn btn-light mr-3 mt-2 mb-2 botao-color"
+                      data-dismiss="modal">Cancelar</button>
+                    <button id="button2" type="submit" class="btn btn-light mt-2 mb-2 botao-color" (click)='cadastrar()'
+                      data-dismiss="modal">Cadastrar</button>
+                  </div>
+
+
                 </div>
+                
+              
             </div>
+          </div>
         </div>
-    </div>
-</div>
-<!-- \Modal-Cadastrar -->
+      </div>
+      <!-- \Modal-Cadastrar -->
+
+      <!--/Modal-Logar-->
+
+      <div class="modal fade" id="mymodal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered d-flex justify-content-center" role="document">
+          <div class="modal-content modal-personalizado backgroundModal cor-backgroundmodal">
+            <h3 class="text-center mt-5 fonte negrito text-white">Entrar</h3>
+            <hr width="400px">
+            <div class="container-fluid">
+              <div class="row d-flex justify-content-center align-items-center">
+                <div style="border-radius: 20px;" class="col-md-6">
+
+                  
+                  
+
+                  <form class="fonte negrito">
+                    <div class="form-group" style="margin-top: 30px;">
+                      <label class="mb-0 ml-2" for="formGroupExampleInput">Usuário:</label>
+                      <input [(ngModel)]='usuarioLogin.usuario' type="text" class="form-control" id="usuario"
+                        placeholder="Digite seu usuario" name="usuario">
+                    </div>
+
+                    <div class="form-group">
+                      <label class="mb-0 ml-2" for="formGroupExampleInput2">Senha:</label>
+                      <input [(ngModel)]='usuarioLogin.senha' type="password" class="form-control" id="senha"
+                        placeholder="Sua senha" name="senha">
+                    </div>
+
+                  </form>
+
+                  <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-light botao-color" data-dismiss="modal" (click)="login()">Entrar</button>
+                  </div>
+
+                 
+                </div>
+                  <div style="border-radius: 20px;" class="col-md-6">
+                    <img class="img-fluid" src="../../assets/logotipomini (2).png" alt=""
+                      width="350px" height="350px">
+                  </div>
+                </div>
+              </div>
+              <hr class="mt-5 mb-5">
+            </div>
+          </div>
+        </div>
+      
+
+
+                <!--/Modal-Logar-->
